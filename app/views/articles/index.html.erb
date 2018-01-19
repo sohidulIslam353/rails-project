@@ -1,20 +1,24 @@
 <h2>All articles are here</h2><hr>
 <%= link_to "Create a new article", new_article_path, class:"btn btn-info" %>
 <p></p>
-<table class="table">
-	<tr>
-		<th>Title ID</th>
-		<th>Title</th>
-		<th>Descrition</th>
-	</tr>
+
 	<% @articles.each do |article| %>
-	<tr>
-		<td><%= article.id %></td>
-		<td><%= article.title %></td>
-		<td><%= article.description %></td>
-		<td class="btn btn-default"><%= link_to "Edit", edit_article_path(article)  %></td>
-		<td class="btn btn-warning"><%= link_to "Show", article_path(article)  %></td>
-		<td class="btn btn-danger"><%= link_to "Delete ", article_path(article), method: :delete, data: {confirm: "Are you sure??"}  %></td>
-	</tr>
+	<div class="row" >
+		<div class="col-xs-8 ">
+			<div class="alert alert-secondary" align="center">
+				<div class="article-title ">
+					<span class="text text-info">Title:</span> <%= article.title %>
+				</div>
+				<div class="article-body">
+					<span class="text text-primary">Description:</span> <%= truncate(article.description, length: 100) %>
+				</div><br>
+				<div class="article-actions" align="center">
+					<%= link_to "Edit", edit_article_path(article), class:"btn btn-primary btn-sm text-white" %>
+					<%= link_to "Show", article_path(article), class:"btn btn-info btn-sm text-white"  %>
+					<%= link_to "Delete ", article_path(article), class:"btn btn-danger btn-sm text-white", method: :delete, data: {confirm: "Are you sure??"}  %>
+				</div>
+			</div>
+		</div>
+	</div><br>
 	<% end  %>
 </table>
